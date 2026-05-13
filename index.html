@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Ikram Abdul Hafizh | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f5faff;
+      color: #034b8c;
+      scroll-behavior: smooth;
+      line-height: 1.5;
+    }
+
+    :root {
+      --primary-blue: #1e6dc7;
+      --pure-white: #ffffff;
+      --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.03);
+      --shadow-md: 0 20px 30px -8px rgba(0, 70, 120, 0.1);
+    }
+
+    .navbar {
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 0.8rem 2rem;
+      border-bottom: 1px solid rgba(30, 109, 199, 0.15);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: #1e6dc7;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      color: #1e3a5f;
+      transition: 0.3s;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--primary-blue);
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #1e6dc7;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.8rem 1.5rem;
+    }
+
+    section {
+      margin-bottom: 3rem;
+      background: var(--pure-white);
+      border-radius: 1.8rem;
+      padding: 1.8rem 2rem;
+      box-shadow: var(--shadow-sm);
+      transition: opacity 0.6s ease, transform 0.5s ease;
+      opacity: 0;
+      transform: translateY(18px);
+      border: 1px solid rgba(30, 109, 199, 0.08);
+    }
+
+    section.reveal {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      border-left: 5px solid var(--primary-blue);
+      padding-left: 1rem;
+      color: #023e8a;
+    }
+
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .hero-content {
+      flex: 1.2;
+    }
+
+    .hero-badge {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #1e6dc7;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-content h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin: 0.5rem 0;
+    }
+
+    .hero-name {
+      background: linear-gradient(135deg, #035c9e, #2b7ed3);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-tagline {
+      font-size: 1.2rem;
+      color: #2a6b9c;
+      margin: 0.8rem 0 1.5rem;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 0.7rem 1.5rem;
+      border-radius: 40px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+    }
+
+    .btn-primary {
+      background: #1e6dc7;
+      color: white;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background: #0f56a8;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid #1e6dc7;
+      color: #1e6dc7;
+    }
+
+    .hero-avatar {
+      flex: 0.7;
+      text-align: center;
+      background: #f1f7fe;
+      border-radius: 2rem;
+      padding: 1.2rem;
+    }
+
+    .hero-avatar img {
+      max-width: 200px;
+      border-radius: 28px;
+      box-shadow: 0 18px 25px -10px rgba(0, 0, 0, 0.1);
+      border: 2px solid white;
+      object-fit: cover;
+      width: 100%;
+      height: auto;
+    }
+
+    .bio-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.8rem;
+    }
+
+    .bio-card {
+      flex: 1;
+      background: #fefefe;
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      border: 1px solid #e9f0f9;
+    }
+
+    .bio-card h3 {
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+
+    .info-list {
+      list-style: none;
+    }
+
+    .info-list li {
+      margin-bottom: 0.7rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 0.8rem;
+    }
+
+    .skill-card {
+      background: #f2f8ff;
+      padding: 0.7rem 1.2rem;
+      border-radius: 2rem;
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: #035c9e;
+      border: 1px solid #d4e4fc;
+    }
+
+    .skill-card i {
+      margin-right: 6px;
+    }
+
+    .hobbies-flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .hobby-item {
+      background: #f2f8ff;
+      border-radius: 2rem;
+      padding: 0.6rem 1.4rem;
+      font-weight: 500;
+      font-size: 0.9rem;
+      border: 1px solid #daeafe;
+    }
+
+    .certificate-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .cert-card {
+      background: white;
+      border-radius: 1.2rem;
+      overflow: hidden;
+      box-shadow: 0 5px 12px rgba(0,0,0,0.05);
+      transition: 0.2s;
+      cursor: pointer;
+      border: 1px solid #eef3fc;
+    }
+
+    .cert-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 15px 25px -10px rgba(30,109,199,0.2);
+    }
+
+    .cert-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      background: #eef2fa;
+      display: block;
+    }
+
+    .cert-info {
+      padding: 0.8rem 1rem 1rem;
+    }
+
+    .cert-info h4 {
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+
+    .cert-info p {
+      font-size: 0.75rem;
+      color: #527a9b;
+    }
+
+    .contact-area {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.8rem;
+    }
+
+    .contact-card {
+      background: #fafdff;
+      padding: 1.2rem;
+      border-radius: 1.5rem;
+      flex: 1;
+      text-align: center;
+      border: 1px solid #e3efff;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 0.9rem;
+      justify-content: center;
+      margin-top: 0.8rem;
+    }
+
+    .social-icons a {
+      background: #ecf3fc;
+      width: 38px;
+      height: 38px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      color: #1e6dc7;
+      font-size: 1.2rem;
+      transition: 0.2s;
+    }
+
+    .social-icons a:hover {
+      background: #1e6dc7;
+      color: white;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.2rem;
+      font-size: 0.8rem;
+      color: #587b9c;
+      border-top: 1px solid #deecfc;
+    }
+
+    .photo-guide {
+      background: #eef4fc;
+      padding: 0.5rem 1rem;
+      border-radius: 2rem;
+      font-size: 0.7rem;
+      display: inline-block;
+      margin-top: 0.7rem;
+    }
+
+    .guide-note {
+      background: #fff3cd;
+      border-left: 4px solid #ffc107;
+      padding: 0.8rem;
+      margin-top: 1rem;
+      border-radius: 0.8rem;
+      font-size: 0.8rem;
+      color: #856404;
+    }
+
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+      .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        gap: 0.7rem;
+        padding-top: 1rem;
+        text-align: center;
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .hero {
+        flex-direction: column;
+        text-align: center;
+      }
+      .hero-content h1 {
+        font-size: 2.3rem;
+      }
+      .section-title {
+        font-size: 1.5rem;
+      }
+      section {
+        padding: 1.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="logo">Portofolio Saya</div>
+    <div class="menu-toggle" id="mobile-menu">
+      <i class="fas fa-bars"></i>
+    </div>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#home" class="nav-link active">HOME</a></li>
+      <li><a href="#biodata" class="nav-link">BIODATA</a></li>
+      <li><a href="#skills" class="nav-link">SKILLS</a></li>
+      <li><a href="#certificates" class="nav-link">SERTIFIKAT</a></li>
+      <li><a href="#contact" class="nav-link">CONTACT</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <div class="container" id="home">
+    <section id="home-section">
+      <div class="hero">
+        <div class="hero-content">
+          <div class="hero-badge">WELCOME TO MY PORTFOLIO</div>
+          <h1><span class="hero-name">Ikram Abdul <br>Hafizh</span></h1>
+          <div class="hero-tagline">WAJIB NGULIKK!</div>
+          <div class="btn-group">
+            <a href="#contact" class="btn btn-primary">Hubungi Saya</a>
+            <a href="#certificates" class="btn btn-outline">Sertifikat</a>
+          </div>
+        </div>
+        <div class="hero-avatar">
+          <!-- 
+            ⚠️ CARA GANTI FOTO PROFIL ⚠️
+            1. Ganti src="img/12510989.JPG" dengan path yang BENAR
+            2. Pastikan file foto ada di folder yang sama dengan file HTML ini
+            3. Contoh: buat folder "img" lalu masukkan foto "fotoku.jpg"
+            4. Maka tulis: src="img/fotoku.jpg"
+            5. Jangan pake C:\Users\... karena tidak bisa di browser!
+          -->
+          <img src="img/12510989.JPG" alt="Foto Profil Ikram" onerror="this.src='https://ui-avatars.com/api/?background=1e6dc7&color=fff&bold=true&size=180&name=Ikram+H'">
+          <div class="photo-guide">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="biodata">
+      <h2 class="section-title">Biodata</h2>
+      <div class="bio-grid">
+        <div class="bio-card">
+          <h3>About Me</h3>
+          <p>Saya Ikram Abdul Hafizh, Saya bersekolah di SMK Wikrama Bogor, di SMK Wikrama ini saya mengambil jurusan PPLG (Pengembangan Perangkat Lunak dan Gim) </p>
+          <br>
+
+        </div>
+        <div class="bio-card">
+          <h3>Informasi Pribadi</h3>
+          <ul class="info-list">
+            <li><strong>Nama Lengkap:</strong> Ikram Abdul Hafizh</li>
+            <li><strong>TTL:</strong> Bogor, 17 Februari 2010</li>
+            <li><strong>Sekolah:</strong> SMK Wikrama Bogor</li>
+            <li><strong>Jurusan:</strong> PPLG (Pengembangan Perangkat Lunak dan Gim)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2 class="section-title">Keahlian</h2>
+      <div class="skills-grid">
+        <div class="skill-card"><i class="fab fa-html5"></i> HTML</div>
+        <div class="skill-card"><i class="fab fa-css3-alt"></i> CSS</div>
+        <div class="skill-card"><i class="fab fa-js"></i> JavaScript</div>
+        <div class="skill-card"><i class="fab fa-php"></i> PHP OOP</div>
+        <div class="skill-card"><i class="fas fa-database"></i> MySQL</div>
+      </div>
+    </section>
+
+    
+
+    <section id="certificates">
+      <h2 class="section-title">Sertifikat</h2>
+      <div class="certificate-gallery" id="cert-gallery">
+        <!-- 
+          ⚠️ CARA GANTI FOTO SERTIFIKAT ⚠️
+          Setiap kartu punya <img class="cert-img">
+          Ganti src="..." dengan path foto sertifikatmu
+          Contoh: src="img/sertifikat_php.jpg"
+        -->
+        <div class="cert-card">
+          <img class="cert-img" src="img/K3.jpg" alt="sertifikat php oop">
+          <div class="cert-info">
+            <h4>Sertifikat K3</h4>
+            <p>Keselamatan kerja · 2026</p>
+          </div>
+        </div>
+        <div class="cert-card">
+          <img class="cert-img" src="img/RevoU.jpg" alt="frontend">
+          <div class="cert-info">
+            <h4>Sertifikat RevoU</h4>
+            <p>Coding Camp · 2026</p>
+          </div>
+        </div>
+        <div class="cert-card">
+          <img class="cert-img" src="img/SertifikatDicoding.jpg" alt="UI UX">
+          <div class="cert-info">
+            <h4>Sertifikat Dicoding</h4>
+            <p>Dicoding Indonesia · 2026</p>
+          </div>
+        </div>
+      </div>
+      
+
+    </section>
+
+    <section id="contact">
+      <h2 class="section-title">Kontak</h2>
+      <div class="contact-area">
+        <div class="contact-card">
+          <i class="fas fa-envelope" style="color:#1e6dc7; font-size: 1.6rem;"></i>
+          <h3 style="margin: 0.5rem 0;">Email</h3>
+          <p>ikramabdulhafizh@smkwikrama.sch.id</p>
+
+        </div>
+        <div class="contact-card">
+          <i class="fas fa-phone-alt" style="color:#1e6dc7; font-size: 1.6rem;"></i>
+          <h3 style="margin: 0.5rem 0;">Telepon</h3>
+          <p>+62 858 8267 1522</p>
+          <div class="social-icons">
+            <a href="https://github.com/IKRAM1026"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/ikram-abdul-hafizh-3126a1386/"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.instagram.com/iqrom_77/"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <p>© 2026 Ikram Abdul Hafizh</p>
+</footer>
+
+<script>
+  (function() {
+    const mobileBtn = document.getElementById('mobile-menu');
+    const navLinks = document.getElementById('nav-links');
+    if (mobileBtn) {
+      mobileBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+      });
+    }
+
+    const sections = document.querySelectorAll('section');
+    const navItems = document.querySelectorAll('.nav-link');
+
+    function updateActiveNav() {
+      let currentId = '';
+      const scrollPos = window.scrollY + 130;
+
+      sections.forEach(sec => {
+        if (sec.id) {
+          const top = sec.offsetTop;
+          const bottom = top + sec.offsetHeight;
+          if (scrollPos >= top && scrollPos < bottom) {
+            currentId = sec.id;
+          }
+        }
+      });
+      if (!currentId && window.scrollY < 150) currentId = 'home-section';
+
+      navItems.forEach(link => {
+        link.classList.remove('active');
+        const href = link.getAttribute('href').substring(1);
+        if (href === currentId || (href === 'home' && currentId === 'home-section')) {
+          link.classList.add('active');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', updateActiveNav);
+    window.addEventListener('load', updateActiveNav);
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        let targetId = this.getAttribute('href').substring(1);
+        if (targetId === 'home') targetId = 'home-section';
+        const targetElem = document.getElementById(targetId);
+        if (targetElem) {
+          e.preventDefault();
+          targetElem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          if (navLinks.classList.contains('active')) navLinks.classList.remove('active');
+        }
+      });
+    });
+
+    const revealSections = document.querySelectorAll('section');
+    const observerOptions = { threshold: 0.15, rootMargin: "0px 0px -30px 0px" };
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal');
+        }
+      });
+    }, observerOptions);
+
+    revealSections.forEach(section => {
+      revealObserver.observe(section);
+      if (section.getBoundingClientRect().top < window.innerHeight) {
+        section.classList.add('reveal');
+      }
+    });
+
+    window.addEventListener('load', () => {
+      revealSections.forEach(section => {
+        if (section.getBoundingClientRect().top < window.innerHeight - 100) {
+          section.classList.add('reveal');
+        }
+      });
+    });
+
+    const certCards = document.querySelectorAll('.cert-card');
+    certCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const title = card.querySelector('h4')?.innerText || 'Sertifikat';
+        alert(` `);
+      });
+    });
+  })();
+</script>
+</body>
+</html>
